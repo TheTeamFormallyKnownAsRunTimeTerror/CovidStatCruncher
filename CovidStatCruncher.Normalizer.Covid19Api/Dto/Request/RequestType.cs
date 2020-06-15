@@ -9,6 +9,8 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Dto.Request
         [EnumMember(Value = "Summary")]
         Summary,
         [EnumMember(Value = "Countries")]
-        Countries
+        Countries,
+        [EnumMember(Value = "ByCountryAllStatus")]
+        ByCountryAllStatus
     }
 }

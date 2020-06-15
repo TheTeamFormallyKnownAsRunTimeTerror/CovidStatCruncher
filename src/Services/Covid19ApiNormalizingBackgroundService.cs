@@ -26,13 +26,13 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Services
         {
             _logger.LogInformation("Normalizing Background service is starting");
             _logger.LogInformation($"Fetching Summary Data");
-            var summaryData = _covidHandler.GetCovidData<Summary>(RequestType.Summary);
-            _logger.LogInformation($"Fetching Default Data");
-            var defaultData = _covidHandler.GetCovidData<Default>(RequestType.Default);
-            _logger.LogInformation($"Fetching Country Data");
-            var countryData = _covidHandler.GetCovidData<List<Country>>(RequestType.Countries);
+            //var summaryData = _covidHandler.GetCovidData<Summary>(RequestType.Summary);
+            //_logger.LogInformation($"Fetching Default Data");
+            //var defaultData = _covidHandler.GetCovidData<Default>(RequestType.Default);
+            //_logger.LogInformation($"Fetching Country Data");
+            //var countryData = _covidHandler.GetCovidData<List<Country>>(RequestType.Countries);
 
-            Task.WaitAll(summaryData, defaultData, countryData);
+            //Task.WaitAll(summaryData, defaultData, countryData);
 
             return Task.CompletedTask;
 

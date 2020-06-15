@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CovidStatCruncher.Normalizer.Covid19Api.Dto.Request;
+using CovidStatCruncher.Normalizer.Covid19Api.Dto.Response.ByCountry.ByCountryAllStatus;
 using CovidStatCruncher.Normalizer.Covid19Api.Settings;
 using Microsoft.Extensions.Logging;
 
@@ -30,6 +31,8 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
                     return GetSummary();
                 case RequestType.Countries:
                     return GetCountryList();
+                case RequestType.ByCountryAllStatus:
+                    return ByCountryAllStatus();
             }
 
             _logger.LogWarning($"Request Type: {requestType} not found, returned default");
@@ -47,6 +50,16 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
         private  string GetCountryList()
         {
             return $"{BaseUrl}/countries";
+        }
+
+        private string ByCountryAllStatus()
+        {
+            DateTime toDataValue;
+            DateTime.TryParse("2020-04-01T00:00:00Z", out toDataValue);
+            DateTime fromDataValue;
+            DateTime.TryParse("2020-03-01T00:00:00Z", out fromDataValue);
+            //return $"{BaseUrl}/country/Ireland?from=2020-03-01T00:00:00Z&to=2020-03-10T00:00:00Z"
+            return $"{BaseUrl}/country/UNITED-STATES?from={fromDataValue:yyyy-MM-dd}&to={toDataValue:yyyy-MM-dd}";
         }
     }
 }

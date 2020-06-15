@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CovidStatCruncher.Normalizer.Covid19Api.Dto.Request;
+using CovidStatCruncher.Normalizer.Covid19Api.Dto.Response.ByCountry.ByCountryAllStatus;
 using CovidStatCruncher.Normalizer.Covid19Api.Dto.Response.Countries;
 using CovidStatCruncher.Normalizer.Covid19Api.Dto.Response.Default;
 using CovidStatCruncher.Normalizer.Covid19Api.Dto.Response.Summary;
@@ -56,6 +57,16 @@ namespace CovidStatCruncher.Controllers
         {
 
             var result = _covidHandler.GetCovidData<List<Country>>(RequestType.Countries);
+
+            return Ok(result.Result);
+        }
+
+        [HttpGet]
+        [Route("bycountry")]
+        public IActionResult GetByCountry()
+        {
+
+            var result = _covidHandler.GetCovidData<List<CountryUpdates>>(RequestType.ByCountryAllStatus);
 
             return Ok(result.Result);
         }
