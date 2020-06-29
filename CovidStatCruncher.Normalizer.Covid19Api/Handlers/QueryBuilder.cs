@@ -13,7 +13,7 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
         private readonly ILogger _logger;
         //private readonly Covid19ApiNormalizingSettings _settings;
 
-        private string BaseUrl = "https://api.covid19api.com/";
+        private string BaseUrl = "https://api.covid19api.com";
 
         public QueryBuilder(ILogger<QueryBuilder> logger)
         {
@@ -31,10 +31,34 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
                     return GetSummary();
                 case RequestType.Countries:
                     return GetCountryList();
-                case RequestType.ByCountryAllStatus:
-                    return ByCountryAllStatus();
+                case RequestType.Stats:
+                    return GetStatsUpdates();
             }
+            _logger.LogWarning($"Request Type: {requestType} not found, returned default");
+            return GetDefault();
+        }
 
+        public string BuildRequestUri(RequestType requestType, string countryName)
+        {
+            switch (requestType)
+            {
+                case RequestType.ByCountryAllStatus:
+                    return ByCountryAllStatus(countryName);
+                case RequestType.LiveByCountryAllStatus:
+                    return LiveByCountryAllStatus(countryName);
+            }
+            _logger.LogWarning($"Request Type: {requestType} not found, returned default");
+            return GetDefault();
+        }
+
+        public string BuildRequestUri(RequestType requestType, string countryName, DateTime fromDate)
+        {
+            switch (requestType)
+            {
+                case RequestType.ByCountryAllStatusRange:
+                    return ByCountryAllStatusRange(countryName, fromDate);
+
+            }
             _logger.LogWarning($"Request Type: {requestType} not found, returned default");
             return GetDefault();
         }
@@ -52,14 +76,25 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
             return $"{BaseUrl}/countries";
         }
 
-        private string ByCountryAllStatus()
+        private string GetStatsUpdates()
         {
-            DateTime toDataValue;
-            DateTime.TryParse("2020-04-01T00:00:00Z", out toDataValue);
-            DateTime fromDataValue;
-            DateTime.TryParse("2020-03-01T00:00:00Z", out fromDataValue);
-            //return $"{BaseUrl}/country/Ireland?from=2020-03-01T00:00:00Z&to=2020-03-10T00:00:00Z"
-            return $"{BaseUrl}/country/UNITED-STATES?from={fromDataValue:yyyy-MM-dd}&to={toDataValue:yyyy-MM-dd}";
+            return $"{BaseUrl}/stats";
+        }
+
+        private string ByCountryAllStatusRange(string countryName, DateTime fromDate)
+        {
+            DateTime toDate = DateTime.Now.AddDays(-1);
+            return $"{BaseUrl}/country/{countryName}?from={fromDate:yyyy-MM-dd}&to={toDate:yyyy-MM-dd}";
+        }
+
+        private string ByCountryAllStatus(string countryName)
+        {
+            return $"{BaseUrl}/total/country/{countryName}";
+        }
+
+        private string LiveByCountryAllStatus(string countryName)
+        {
+            return $"{BaseUrl}/live/country/{countryName}";
         }
     }
 }

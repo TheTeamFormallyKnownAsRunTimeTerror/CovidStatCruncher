@@ -1,9 +1,13 @@
+using CovidStatCruncher.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CovidStatCruncher.Ioc;
+using CovidStatCruncher.Normalizer.Covid19Api.Settings;
+using CovidStatCruncher.Settings.Deployment;
+using Microsoft.EntityFrameworkCore;
 
 namespace CovidStatCruncher
 {
@@ -27,7 +31,14 @@ namespace CovidStatCruncher
             );
             services.AddSwaggerGen();
 
+            services.AddDbContext<CovidStatCruncherContext>(
+                options => options.UseMySql(Configuration.GetConnectionString("CovidData")),
+                ServiceLifetime.Transient
+            );
+            services.Configure<DeploymentSettings>(Configuration.GetSection("Deployment"));
+
             services.AddCovid19ApiServices(Configuration);
+
 
         }
 

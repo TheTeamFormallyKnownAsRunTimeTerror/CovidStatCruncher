@@ -31,6 +31,28 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
             return result;
         }
 
+        public async Task<TResponse> GetCovidData<TResponse>(RequestType requestType, string countryName)
+        {
+            _logger.LogInformation($"Attempting to build request to retrieve api data.");
+            var query = _queryBuilder.BuildRequestUri(requestType, countryName);
+
+            var result = await GetAsync<TResponse>(query);
+
+            Console.WriteLine($"{result}");
+
+            return result;
+        }
+
+        public async Task<TResponse> GetCovidData<TResponse>(RequestType requestType, string countryName, DateTime fromDate)
+        {
+            _logger.LogInformation($"Attempting to build request to retrieve api data.");
+            var query = _queryBuilder.BuildRequestUri(requestType, countryName, fromDate);
+
+            var result = await GetAsync<TResponse>(query);
+
+            return result;
+        }
+
 
         private HttpClient GetHttpClient()
         {
