@@ -18,7 +18,7 @@ namespace CovidStatCruncher.Ioc
             services.AddTransient<ICovidHandler, CovidHandler>();
             services.AddTransient<IGetStartUpDataService, GetStartupData>();
             services.AddTransient<IGetUpdatedDataService, GetUpdatedDataService>();
-            services.AddHostedService<Covid19ApiNormalizingBackgroundService>();
+            //services.AddHostedService<Covid19ApiNormalizingBackgroundService>();
         }
     }
 }

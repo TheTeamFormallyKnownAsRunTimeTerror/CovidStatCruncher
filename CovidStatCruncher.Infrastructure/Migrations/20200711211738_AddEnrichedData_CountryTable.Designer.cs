@@ -3,14 +3,16 @@ using System;
 using CovidStatCruncher.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CovidStatCruncher.Infrastructure.Migrations
 {
     [DbContext(typeof(CovidStatCruncherContext))]
-    partial class CovidStatCruncherContextModelSnapshot : ModelSnapshot
+    [Migration("20200711211738_AddEnrichedData_CountryTable")]
+    partial class AddEnrichedData_CountryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,8 +62,8 @@ namespace CovidStatCruncher.Infrastructure.Migrations
                     b.Property<double>("MedianAge")
                         .HasColumnType("double");
 
-                    b.Property<double>("Population")
-                        .HasColumnType("double");
+                    b.Property<long>("Population")
+                        .HasColumnType("bigint");
 
                     b.Property<double>("PopulationDensity")
                         .HasColumnType("double");

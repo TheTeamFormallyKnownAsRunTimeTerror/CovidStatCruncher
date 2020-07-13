@@ -47,17 +47,8 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Services
             _getUpdatedDataService.GetUpdatedCountryData();
             // Startup and read latest entries from the database, and then fetch any data later than the last updated date. 
 
-        }
+            //Check/updated enriched data availabilty 
 
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            _logger.LogInformation("Normalizing Background service is stopping");
-            return Task.CompletedTask;
-        }
-
-        public Task StartAsync(CancellationToken cancellationToken)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

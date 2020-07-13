@@ -1,4 +1,5 @@
 using CovidStatCruncher.Infrastructure.Data;
+using CovidStatCruncher.Infrastructure.SecurityProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CovidStatCruncher.Ioc;
 using CovidStatCruncher.Normalizer.Covid19Api.Settings;
+using CovidStatCruncher.Normalizer.OwinDataSet.Services;
+using CovidStatCruncher.Services;
 using CovidStatCruncher.Settings.Deployment;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,6 +41,11 @@ namespace CovidStatCruncher
             services.Configure<DeploymentSettings>(Configuration.GetSection("Deployment"));
 
             services.AddCovid19ApiServices(Configuration);
+
+            services.AddTransient<IAwsSecurityProvider, AwsSecurityProvider>();
+            services.AddTransient<IAthenaDataService, AthenaDataService>();
+            services.AddTransient<IAthenaUpdateService, AthenaUpdateService>();
+            services.AddHostedService<OwinEnrichedDataNormalizingService>();
 
 
         }

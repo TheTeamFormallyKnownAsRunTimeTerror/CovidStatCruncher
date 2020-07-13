@@ -64,7 +64,7 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.DataMethods.Startup
             }
             catch (Exception exc)
             {
-                _logger.LogError("Error fetching and storing startup country data.");
+                _logger.LogError($"Error fetching and storing startup country data. {exc.Message}");
             }
 
             return true;

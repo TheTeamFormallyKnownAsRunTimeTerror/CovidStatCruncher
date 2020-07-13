@@ -17,5 +17,20 @@ namespace CovidStatCruncher.Infrastructure.Models
         public bool? HasData { get; set; }
 
         public ICollection<CountryData> CountryData { get; set; }
+
+        // Enriched Data from OWID
+
+        public double Population { get; set; }
+        public double PopulationDensity { get; set; }
+        public double MedianAge { get; set; }
+        public double Aged65Older { get; set; }
+        public double Aged70Older { get; set; }
+        public double GdpPerCapita { get; set; }
+        public double DiabetesPrevalence { get; set; }
+        public double HandwashingFacilities { get; set; }
+        public double HospitalBedsPerThousand { get; set; }
+        public double LifeExpectancy { get; set; }
+
+
     }
 }

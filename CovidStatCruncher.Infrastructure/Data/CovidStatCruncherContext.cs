@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CovidStatCruncher.Infrastructure.Models;
+﻿using CovidStatCruncher.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CovidStatCruncher.Infrastructure.Data

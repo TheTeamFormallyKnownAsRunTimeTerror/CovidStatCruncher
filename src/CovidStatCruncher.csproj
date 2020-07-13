@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CovidStatCruncher.Infrastructure\CovidStatCruncher.Infrastructure.csproj" />
     <ProjectReference Include="..\CovidStatCruncher.Normalizer.Covid19Api\CovidStatCruncher.Normalizer.Covid19Api.csproj" />
+    <ProjectReference Include="..\CovidStatCruncher.Normalizer.OwinDataSet\CovidStatCruncher.Normalizer.OwinDataSet.csproj" />
   </ItemGroup>
 
 
