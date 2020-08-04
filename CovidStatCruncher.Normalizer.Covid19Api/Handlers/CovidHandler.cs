@@ -79,5 +79,7 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
                 return result;
             }
         }
+
+
     }
 }
