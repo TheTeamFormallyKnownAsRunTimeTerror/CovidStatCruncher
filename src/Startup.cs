@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CovidStatCruncher.Ioc;
+using CovidStatCruncher.Normalizer.Covid19Api.Services;
 using CovidStatCruncher.Normalizer.Covid19Api.Settings;
 using CovidStatCruncher.Normalizer.OwinDataSet.Services;
 using CovidStatCruncher.Services;
@@ -46,6 +47,7 @@ namespace CovidStatCruncher
             services.AddTransient<IAthenaDataService, AthenaDataService>();
             services.AddTransient<IAthenaUpdateService, AthenaUpdateService>();
             services.AddHostedService<OwinEnrichedDataNormalizingService>();
+            services.AddHostedService<Covid19ApiNormalizingBackgroundService>();
 
 
         }

@@ -73,7 +73,7 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.DataMethods.UpdatedData
                         Recovered = updateToMap.Recovered,
                         ConfirmedCases = updateToMap.Confirmed,
                         DateTime = updateToMap.Date
-                    }))
+                    }) )
                     {
                         context.CountryData.Add(mappedUpdate);
                         context.SaveChanges();
