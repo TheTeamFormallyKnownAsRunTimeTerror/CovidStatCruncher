@@ -26,7 +26,7 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
 
             var result = await GetAsync<TResponse>(query);
 
-            Console.WriteLine($"{result}");
+            _logger.LogInformation($"{result}");
 
             return result;
         }
@@ -38,7 +38,7 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
 
             var result = await GetAsync<TResponse>(query);
 
-            Console.WriteLine($"{result}");
+            _logger.LogInformation($"{result}");
 
             return result;
         }
@@ -50,6 +50,9 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
 
             var result = await GetAsync<TResponse>(query);
 
+            _logger.LogInformation($"{result}");
+
+
             return result;
         }
 
@@ -58,12 +61,13 @@ namespace CovidStatCruncher.Normalizer.Covid19Api.Handlers
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+            _logger.LogInformation($"Got HTTP client");
             return client;
         }
 
         private async Task<TResponse> GetAsync<TResponse>(string requestUri)
         {
+            _logger.LogInformation($"Get Async hit. requestUri = : {requestUri}");
             using (var client = GetHttpClient())
             {
                 _logger.LogDebug($"Calling Api with at {requestUri}");
