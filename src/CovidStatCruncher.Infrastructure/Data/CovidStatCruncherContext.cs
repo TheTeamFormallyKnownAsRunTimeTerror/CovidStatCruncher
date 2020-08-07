@@ -15,6 +15,7 @@ namespace CovidStatCruncher.Infrastructure.Data
         }
         public DbSet<Countries> Countries { get; set; }
         public DbSet<CountryData> CountryData { get; set; }
+        public DbSet<CountryStatistics> CountryStatistics { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
