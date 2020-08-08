@@ -10,6 +10,9 @@ namespace CovidStatCruncher.Infrastructure.Models
     {
         [Key]
         public int CountryId { get; set; }
+
+        public string CountryCode { get; set; }
+
         public string CountryName { get; set; }
 
         //Json blobs with statistics
