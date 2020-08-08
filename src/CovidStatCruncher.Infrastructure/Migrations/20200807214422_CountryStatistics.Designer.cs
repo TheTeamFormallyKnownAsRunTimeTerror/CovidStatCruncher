@@ -3,14 +3,16 @@ using System;
 using CovidStatCruncher.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CovidStatCruncher.Infrastructure.Migrations
 {
     [DbContext(typeof(CovidStatCruncherContext))]
-    partial class CovidStatCruncherContextModelSnapshot : ModelSnapshot
+    [Migration("20200807214422_CountryStatistics")]
+    partial class CountryStatistics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,9 +131,6 @@ namespace CovidStatCruncher.Infrastructure.Migrations
                     b.Property<int>("CountryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("CountryCode")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("CountryName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
